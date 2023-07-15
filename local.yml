@@ -1,9 +1,12 @@
 ---
 - name: setup dev ubuntu
   hosts: localhost
+  vars_files:
+    - variables.yml
   gather_facts: false
   roles:
-    - basic-config
-    - aws-cli
-    - azure
-    - gcloud
+#    - basic-config
+#    - aws-cli
+#    - azure
+#    - gcloud
+    - terraform

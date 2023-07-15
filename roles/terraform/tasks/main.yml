@@ -1,0 +1,10 @@
+
+- name: clone tfenv
+  git:
+    repo: https://github.com/tfutils/tfenv.git
+    dest: /home/{{ ssh.remote.username }}/.tfenv
+
+- name: add PATH to bashrc
+  lineinfile:
+    path: /home/{{ ssh.remote.username }}/.bashrc
+    line: 'export PATH="$HOME/.tfenv/bin:$PATH"'
