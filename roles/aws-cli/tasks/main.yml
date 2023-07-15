@@ -4,10 +4,6 @@
   changed_when: false
   failed_when: false
 
-- name: debug result
-  debug:
-    var: aws_result.stdout
-
 - name: install cli
   include_tasks: install-cli.yml
   when: "'No such file' in aws_result.msg"

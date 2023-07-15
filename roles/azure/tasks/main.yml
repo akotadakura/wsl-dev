@@ -1,0 +1,10 @@
+- name: check if aws cil is installed
+  command: "az"
+  register: aws_result
+  changed_when: false
+  failed_when: false
+
+- name: install az-cli
+  shell : "curl -sL https://aka.ms/InstallAzureCLIDeb | bash"
+  when: "'No such file' in aws_result.msg"
+  become: Yes
