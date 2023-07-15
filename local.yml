@@ -1,0 +1,6 @@
+---
+- name: setup dev ubuntu
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - basic-config
