@@ -1,0 +1,26 @@
+
+- name: download aws-cli
+  get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp/awscliv2.zip
+  become: Yes
+
+- name: unzip aws-cli package
+  shell: "cd /tmp && unzip awscliv2.zip"
+  become: Yes
+
+- name: install aws-cli
+  shell: "/tmp/aws/install"
+  become: Yes
+
+- name: clean aws-cli zip
+  file:
+    path: /tmp/awscliv2.zip
+    state: absent
+  become: Yes
+
+- name: clean aws-cli package
+  file:
+    path: /tmp/aws
+    state: absent
+  become: Yes
