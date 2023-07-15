@@ -1,0 +1,32 @@
+
+- name: put list file
+  copy:
+    src: google-cloud-sdk.list
+    dest: /etc/apt/sources.list.d/google-cloud-sdk.list
+    force: Yes
+    mode: 0644
+  become: Yes
+
+- name: add gcloud apt key
+  uri:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /etc/apt/trusted.gpg.d/cloud.google.asc
+    mode: '0644'
+  become: Yes
+
+#- name: read gcloud apt key
+#  apt_key:
+#    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#    state: present
+
+- name: reload repository
+  apt:
+    update_cache: Yes
+    upgrade: No
+  become: Yes
+
+- name: install gcloud cli
+  apt:
+    name: google-cloud-cli
+    state: present
+  become: Yes
